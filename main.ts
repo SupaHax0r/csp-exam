@@ -128,6 +128,7 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
         fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbffffbffffdfffcddcfffffffffffffffff
         fffffffffffffffffffffffffffffffffbffffffbffffffffffffffffffffffbfcffffcfffffffffffffffcffffffffffffffffffffffffffffffffffffffffffffffffffffdddffffffffffccffffff
         `)
+    tiles.loadMap(tiles.createMap(tilemap`level1`))
 })
 let GreetSprite: Sprite = null
 scroller.setLayerImage(scroller.BackgroundLayer.Layer0, img`
@@ -253,23 +254,6 @@ scroller.setLayerImage(scroller.BackgroundLayer.Layer0, img`
     6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
     `)
 scroller.scrollBackgroundWithSpeed(-27, 0)
-GreetSprite = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Greeting)
+GreetSprite = sprites.create(assets.image`no`, SpriteKind.Greeting)
 GreetSprite.sayText("Press Menu", 5000, false)
 music.play(music.stringPlayable("- - - - - - - - ", 120), music.PlaybackMode.LoopingInBackground)
