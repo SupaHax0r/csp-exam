@@ -127,8 +127,8 @@ dddddddddddd66666dddddddddddd99999999999dddddddddddd66666dddddddddddd99999999999
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
+. . . . . . . . 3 3 3 . . . . . 
+. . . . . . . . . . 3 . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -257,4 +257,4 @@ ffffffffffffffffffffffffffffffffffffffffffffffcfffffdcfffddffffffffffffffffbffff
 ffffffffffffffffffffffdfffffffffcfffffffbffffffffffdffffffffffffffffffcfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbdffffffffffffffffffffffffffff
 fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbffffbffffdfffcddcfffffffffffffffff
 fffffffffffffffffffffffffffffffffbffffffbffffffffffffffffffffffbfcffffcfffffffffffffffcffffffffffffffffffffffffffffffffffffffffffffffffffffdddffffffffffccffffff
-`</field><data>{"commentRefs":[],"fieldData":{"img":"XJUvR]T,v@lNON3Ai0ge"}}</data></shadow></value></block></next></block></next></block></next></block></next></block></statement></block><block type="variables_set" id="+UB%1{UH%v[+i*p:CwD}" disabled="true" x="70" y="450"><field name="VAR" id="gV(6ipriXx~)X,Tl4Q0K">yettobeactivatedboobytraps</field><value name="VALUE"><block type="lists_create_with" id="5M(L`OqCO^(qKBt/^,yX" disabled="true"><mutation items="2" horizontalafter="3"></mutation><value name="ADD0"><shadow type="math_number" id="er*Cw)6;@7lnYy#yBo;{" disabled="true"><field name="NUM">0</field></shadow></value><value name="ADD1"><shadow type="math_number" id="UNfOBvgMp62X`r7TDnCx" disabled="true"><field name="NUM">1</field></shadow></value></block></value><next><block type="variables_set" id="D]D*NqAe^!^(mn/riBFo" disabled="true"><field name="VAR" id="QHDuxEsE|jQzjYF~tgSs">activatedboobytraps</field><value name="VALUE"><block type="lists_create_with" id="H|6?22#:8au9z7Z^|f6_" disabled="true"><mutation items="2" horizontalafter="3"></mutation><value name="ADD0"><shadow type="math_number" id="@gGeoMf-db#Hbpf=xl_q" disabled="true"><field name="NUM">0</field></shadow></value><value name="ADD1"><shadow type="math_number" id="f)fr=IAHGwZuSZhQNxkG" disabled="true"><field name="NUM">1</field></shadow></value></block></value></block></next></block></xml>
+`</field><data>{"commentRefs":[],"fieldData":{"img":"XJUvR]T,v@lNON3Ai0ge"}}</data></shadow></value><next><block type="tilemap_loadMap" id="B`:%6}B|Xx18NEn}R@9L"><value name="map"><shadow type="create_overworld_map" id="}c*5Vw$TdIw!p~v6p9N#"><field name="tilemap">tilemap`level1`</field><data>{"commentRefs":[],"fieldData":{"tilemap":"level1"}}</data></shadow></value></block></next></block></next></block></next></block></next></block></next></block></statement></block></xml>

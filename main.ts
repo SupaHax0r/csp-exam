@@ -128,6 +128,7 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
         fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffbffffbffffdfffcddcfffffffffffffffff
         fffffffffffffffffffffffffffffffffbffffffbffffffffffffffffffffffbfcffffcfffffffffffffffcffffffffffffffffffffffffffffffffffffffffffffffffffffdddffffffffffccffffff
         `)
+    tiles.loadMap(tiles.createMap(tilemap`level1`))
 })
 let GreetSprite: Sprite = null
 scroller.setLayerImage(scroller.BackgroundLayer.Layer0, img`
@@ -261,8 +262,8 @@ GreetSprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
+    . . . . . . . . 3 3 3 . . . . . 
+    . . . . . . . . . . 3 . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
