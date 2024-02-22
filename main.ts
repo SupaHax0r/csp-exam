@@ -1,12 +1,22 @@
 namespace SpriteKind {
     export const Greeting = SpriteKind.create()
+    export const Camera = SpriteKind.create()
+    export const BoobyTrap = SpriteKind.create()
 }
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava1, function (sprite, location) {
+    sprites.destroy(sprite, effects.disintegrate, 1000)
+})
 controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
-    scroller.scrollBackgroundWithSpeed(0, 0, scroller.BackgroundLayer.Layer0)
+    scroller.scrollBackgroundWithSpeed(0, 0)
     music.stopAllSounds()
+    listtransfer = 2
+    SmallHeights = [0, 0.5]
+    mediumheights = [1, 1.5]
+    Big_heights = [2, 3]
+    yettobeactivatedboobytraps = [sprites.create(assets.image`myImage`, SpriteKind.BoobyTrap), sprites.create(assets.image`myImage0`, SpriteKind.BoobyTrap)]
     sprites.destroy(GreetSprite, effects.fire, 2000)
     music.play(music.stringPlayable("- - - - - - - - ", 120), music.PlaybackMode.LoopingInBackground)
-    scroller.setLayerImage(scroller.BackgroundLayer.Layer0, img`
+    scene.setBackgroundImage(img`
         fffffffcbccffffffffffcfbddddddddddd111111111111111111111111dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbffcddffffffcfcfffff
         fffffffccffffcffffffbfddddddddd11111111111111111111111111111111ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfccdbffffffffffffff
         fffffffcffffffbffffffddddddddd1111111111111111111111111111111111ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddcffcbfffffffffffcdcf
@@ -129,9 +139,195 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
         fffffffffffffffffffffffffffffffffbffffffbffffffffffffffffffffffbfcffffcfffffffffffffffcffffffffffffffffffffffffffffffffffffffffffffffffffffdddffffffffffccffffff
         `)
     tiles.loadMap(tiles.createMap(tilemap`level1`))
+    Camera = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Camera)
+    tiles.placeOnTile(Camera, tiles.getTileLocation(1, 7))
+    scene.cameraFollowSprite(Camera)
+    mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.One), sprites.create(img`
+        . . . . . . f f f f . . . . . . 
+        . . . . f f f 2 2 f f f . . . . 
+        . . . f f f 2 2 2 2 f f f . . . 
+        . . f f f e e e e e e f f f . . 
+        . . f f e 2 2 2 2 2 2 e e f . . 
+        . . f e 2 f f f f f f 2 e f . . 
+        . . f f f f e e e e f f f f . . 
+        . f f e f b f 4 4 f b f e f f . 
+        . f e e 4 1 f d d f 1 4 e e f . 
+        . . f e e d d d d d d e e f . . 
+        . . . f e e 4 4 4 4 e e f . . . 
+        . . e 4 f 2 2 2 2 2 2 f 4 e . . 
+        . . 4 d f 2 2 2 2 2 2 f d 4 . . 
+        . . 4 4 f 4 4 5 5 4 4 f 4 4 . . 
+        . . . . . f f f f f f . . . . . 
+        . . . . . f f . . f f . . . . . 
+        `, SpriteKind.Player))
+    tiles.placeOnTile(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)), tiles.getTileLocation(randint(0, 2), 7))
+    mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two), sprites.create(img`
+        . . . . f f f f f . . . . . . . 
+        . . . f e e e e e f . . . . . . 
+        . . f d d d d e e e f . . . . . 
+        . c d f d d f d e e f f . . . . 
+        . c d f d d f d e e d d f . . . 
+        c d e e d d d d e e b d c . . . 
+        c d d d d c d d e e b d c . f f 
+        c c c c c d d d e e f c . f e f 
+        . f d d d d d e e f f . . f e f 
+        . . f f f f f e e e e f . f e f 
+        . . . . f e e e e e e e f f e f 
+        . . . f e f f e f e e e e f f . 
+        . . . f e f f e f e e e e f . . 
+        . . . f d b f d b f f e f . . . 
+        . . . f d d c d d b b d f . . . 
+        . . . . f f f f f f f f f . . . 
+        `, SpriteKind.Player))
+    tiles.placeOnTile(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)), tiles.getTileLocation(randint(0, 2), 7))
+    mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three), sprites.create(img`
+        ..............ccccccccc........
+        ............cc555555555cc......
+        ...........c5555555555555c.....
+        ..........c55555555555555dc....
+        .........c555555555555b5bdc....
+        .........555bc1555555555bdcccc.
+        ........c555ccc55555555bbdccddc
+        ........c555bcb5555555ccddcdddc
+        .......c555555555551ccccddbdddc
+        .......c555555b555c1cccbddbbdbc
+        .......c5555555bbc33333ddddbcc.
+        .......c555555555bc333555ddbc..
+        .......c5555555555555555555c...
+        .......cd555555555555cccc555c..
+        .......cd55555555555c555c555c..
+        .......cdd555555555b5555b555c..
+        .......cddd55555ddbb555bb555c..
+        .......cdddd55555555555b5555c..
+        .......cddddd5555555ddb5555dc..
+        c......cdddddd555555555555dcc..
+        cc...ccddddddd555555555555dc...
+        cdccccdddddd555555d55555ddcc...
+        cdddddddddbd5555555ddddddccccc.
+        ccdddddddbb55555555bddddccbddc.
+        .ccddddddbd55555555bdddccdddc..
+        ..cccddddbd5555555cddcccddbc...
+        ....ccccccd555555bcccc.cccc....
+        .........cc555555bc............
+        .........cc55555555c...........
+        ..........cccccccccc...........
+        `, SpriteKind.Player))
+    tiles.placeOnTile(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three)), tiles.getTileLocation(randint(0, 2), 7))
+    mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four), sprites.create(img`
+        ................................
+        ................................
+        ................................
+        ................................
+        ................................
+        ................................
+        ................................
+        ................................
+        ................................
+        ................................
+        ................................
+        ................................
+        ........ccccc...................
+        ......ccbbbbbc..................
+        ....ccddbbbbbbf.................
+        ...cbbbddbbffbf.................
+        ....ffffdbbffbff................
+        .......fbbbbbbbf................
+        .......fbbbbbbbff...............
+        ......ffbbbbbbbbfff.............
+        ......f6bbbbbb663ddcc...........
+        .....cc66bbbb666dddddc..........
+        .....cd36666663dddddddc.........
+        .....cddd3333dbddddddbcc........
+        .....cddddddddbdddddbbddc.......
+        .....cddddddddbbdddbbdddbc......
+        ......cddddddddbbdbbddddbbccc...
+        ......ccddddddddbbbbcccccbbbcc..
+        .......ccddddddddddddddbccffff..
+        ........cccbddccbddddbbfff......
+        ........c333bb333cbbfff.........
+        ........c33cc33cc3fff...........
+        `, SpriteKind.Player))
+    tiles.placeOnTile(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)), tiles.getTileLocation(randint(0, 2), 7))
+    mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.One), 45, 45)
+    mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Two), 45, 0)
+    mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Three), 45, 0)
+    mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Four), 45, 0)
+    RandomlyGeneratedTileMap(game.askForNumber("num=platform length", 1), game.askForString("Choose random one s m l ", 1), game.askForNumber("num=dist between platforms", 1))
+    Camera.setVelocity(-30, 0)
+    pause(1000)
+    mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)).setFlag(SpriteFlag.AutoDestroy, true)
+    mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)).setFlag(SpriteFlag.AutoDestroy, true)
+    mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three)).setFlag(SpriteFlag.AutoDestroy, true)
+    mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)).setFlag(SpriteFlag.AutoDestroy, true)
+    Camera.setVelocity(30, 0)
 })
+function RandomlyGeneratedTileMap (PlatformLength: number, DifficultyModel: string, Distancebetweenplatforms: number) {
+    CurrentPosition = tiles.locationOfSprite(Camera)
+    while (tiles.locationXY(CurrentPosition, tiles.XY.row) > 0) {
+        if (DifficultyModel == "s") {
+            for (let index = 0; index < SmallHeights._pickRandom(); index++) {
+                if (Math.percentChance(50)) {
+                    CurrentPosition = tiles.locationInDirection(CurrentPosition, CollisionDirection.Top)
+                } else {
+                    CurrentPosition = tiles.locationInDirection(CurrentPosition, CollisionDirection.Bottom)
+                }
+            }
+        } else if (DifficultyModel == "m") {
+            for (let index = 0; index < mediumheights._pickRandom(); index++) {
+                if (Math.percentChance(50)) {
+                    CurrentPosition = tiles.locationInDirection(CurrentPosition, CollisionDirection.Top)
+                } else {
+                    CurrentPosition = tiles.locationInDirection(CurrentPosition, CollisionDirection.Bottom)
+                }
+            }
+        } else {
+            for (let index = 0; index < Big_heights._pickRandom(); index++) {
+                if (Math.percentChance(50)) {
+                    CurrentPosition = tiles.locationInDirection(CurrentPosition, CollisionDirection.Top)
+                } else {
+                    CurrentPosition = tiles.locationInDirection(CurrentPosition, CollisionDirection.Bottom)
+                }
+            }
+        }
+        for (let index = 0; index < Distancebetweenplatforms; index++) {
+            CurrentPosition = tiles.locationInDirection(CurrentPosition, CollisionDirection.Right)
+        }
+        for (let index = 0; index < PlatformLength; index++) {
+            tiles.setTileAt(CurrentPosition, sprites.builtin.oceanSand10)
+            tiles.setWallAt(CurrentPosition, true)
+            CurrentPosition = tiles.locationInDirection(CurrentPosition, CollisionDirection.Right)
+        }
+    }
+    return
+}
+let activatedboobytraps: Sprite[] = []
+let RealTimeBoobytrap: Sprite = null
+let CurrentPosition: tiles.Location = null
+let Camera: Sprite = null
+let yettobeactivatedboobytraps: Sprite[] = []
+let Big_heights: number[] = []
+let mediumheights: number[] = []
+let SmallHeights: number[] = []
+let listtransfer = 0
 let GreetSprite: Sprite = null
-scroller.setLayerImage(scroller.BackgroundLayer.Layer0, img`
+scene.setBackgroundImage(img`
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
@@ -257,3 +453,25 @@ scroller.scrollBackgroundWithSpeed(-27, 0)
 GreetSprite = sprites.create(assets.image`no`, SpriteKind.Greeting)
 GreetSprite.sayText("Press Menu", 5000, false)
 music.play(music.stringPlayable("- - - - - - - - ", 120), music.PlaybackMode.LoopingInBackground)
+game.onUpdateInterval(5000, function () {
+    if (listtransfer <= 1) {
+        if (Math.percentChance(50)) {
+            RealTimeBoobytrap = activatedboobytraps._pickRandom()
+        } else {
+        	
+        }
+        if (true) {
+        	
+        } else {
+        	
+        }
+    }
+})
+game.onUpdateInterval(30000, function () {
+    activatedboobytraps = []
+    activatedboobytraps.push(yettobeactivatedboobytraps.removeAt(randint(0, 1)))
+    listtransfer += -1
+    if (listtransfer == 0) {
+        yettobeactivatedboobytraps = []
+    }
+})
