@@ -346,6 +346,9 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)).setFlag(SpriteFlag.AutoDestroy, true)
     Camera.setVelocity(30, 0)
 })
+controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
+	
+})
 function RandomlyGeneratedTileMap (PlatformLength: number, DifficultyModel: string, Distancebetweenplatforms: number) {
     CurrentPosition = tiles.locationOfSprite(Camera)
     while (tiles.locationXY(CurrentPosition, tiles.XY.row) > 0) {
