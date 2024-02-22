@@ -33,6 +33,21 @@ controller.player1.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
         mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)).vy = -150
     }
 })
+info.onCountdownEnd(function () {
+    activatedboobytraps = []
+    activatedboobytraps.push(yettobeactivatedboobytraps.removeAt(randint(0, 1)))
+    listtransfer += 1
+    info.startCountdown(15)
+    if (listtransfer == 0) {
+        yettobeactivatedboobytraps = []
+    }
+    RealTimeBoobytrap = activatedboobytraps._pickRandom()
+    if (RealTimeBoobytrap == sprites.create(assets.image`myImage`, SpriteKind.BoobyTrap)) {
+        RealTimeBoobytrap.setPosition(0, 0)
+    } else {
+    	
+    }
+})
 controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
     if (jump2 < randint(2, 3)) {
         jump2 += 1
@@ -321,6 +336,7 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Four), 45, 0)
     RandomlyGeneratedTileMap(game.askForNumber("num=platform length", 1), game.askForString("Choose random one s m l ", 1), game.askForNumber("num=dist between platforms", 1))
     Camera.setVelocity(-30, 0)
+    info.startCountdown(30)
     pause(1000)
     mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)).setFlag(SpriteFlag.AutoDestroy, true)
     mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)).setFlag(SpriteFlag.AutoDestroy, true)
@@ -373,16 +389,16 @@ controller.player3.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
         mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three)).vy = -150
     }
 })
-let activatedboobytraps: Sprite[] = []
-let RealTimeBoobytrap: Sprite = null
 let CurrentPosition: tiles.Location = null
 let Camera: Sprite = null
-let yettobeactivatedboobytraps: Sprite[] = []
 let Big_heights: number[] = []
 let mediumheights: number[] = []
 let SmallHeights: number[] = []
-let listtransfer = 0
 let triplejump: number[] = []
+let RealTimeBoobytrap: Sprite = null
+let listtransfer = 0
+let yettobeactivatedboobytraps: Sprite[] = []
+let activatedboobytraps: Sprite[] = []
 let jump3 = 0
 let jump2 = 0
 let jump1 = 0
@@ -515,25 +531,3 @@ scroller.scrollBackgroundWithSpeed(-27, 0)
 GreetSprite = sprites.create(assets.image`no`, SpriteKind.Greeting)
 GreetSprite.sayText("Press Menu", 5000, false)
 music.play(music.stringPlayable("- - - - - - - - ", 120), music.PlaybackMode.LoopingInBackground)
-game.onUpdateInterval(5000, function () {
-    if (listtransfer <= 1) {
-        if (Math.percentChance(50)) {
-            RealTimeBoobytrap = activatedboobytraps._pickRandom()
-        } else {
-        	
-        }
-        if (true) {
-        	
-        } else {
-        	
-        }
-    }
-})
-game.onUpdateInterval(30000, function () {
-    activatedboobytraps = []
-    activatedboobytraps.push(yettobeactivatedboobytraps.removeAt(randint(0, 1)))
-    listtransfer += -1
-    if (listtransfer == 0) {
-        yettobeactivatedboobytraps = []
-    }
-})
