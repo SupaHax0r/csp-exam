@@ -3,6 +3,9 @@ namespace SpriteKind {
     export const Camera = SpriteKind.create()
     export const BoobyTrap = SpriteKind.create()
 }
+controller.player4.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
+	
+})
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     for (let index = 0; index <= PlayaList.length - 1; index++) {
         if (PlayaList[index] == sprite) {
@@ -20,6 +23,12 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
             PlayaList[index].vy = 0
         }
     }
+})
+controller.player1.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
+	
+})
+controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
+	
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava1, function (sprite, location) {
     sprites.destroy(sprite, effects.disintegrate, 1000)
@@ -349,6 +358,9 @@ function RandomlyGeneratedTileMap (PlatformLength: number, DifficultyModel: stri
     }
     return
 }
+controller.player3.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
+	
+})
 let activatedboobytraps: Sprite[] = []
 let RealTimeBoobytrap: Sprite = null
 let CurrentPosition: tiles.Location = null
