@@ -3,12 +3,27 @@ namespace SpriteKind {
     export const Camera = SpriteKind.create()
     export const BoobyTrap = SpriteKind.create()
 }
+scene.onHitWall(SpriteKind.Player, function (sprite, location) {
+    for (let index = 0; index <= 4; index++) {
+    	
+    }
+})
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava1, function (sprite, location) {
     sprites.destroy(sprite, effects.disintegrate, 1000)
 })
 controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     scroller.scrollBackgroundWithSpeed(0, 0)
     music.stopAllSounds()
+    jump1 = 0
+    jump2 = 0
+    jump3 = 0
+    jump4 = 0
+    triplejump = [
+    jump1,
+    jump2,
+    jump3,
+    jump4
+    ]
     listtransfer = 2
     SmallHeights = [0, 0.5]
     mediumheights = [1, 1.5]
@@ -265,6 +280,12 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
         ........c33cc33cc3fff...........
         `, SpriteKind.Player))
     tiles.placeOnTile(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)), tiles.getTileLocation(randint(0, 2), 7))
+    PlayaList = [
+    mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)),
+    mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)),
+    mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three)),
+    mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four))
+    ]
     mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.One), 45, 45)
     mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Two), 45, 0)
     mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Three), 45, 0)
@@ -320,12 +341,18 @@ function RandomlyGeneratedTileMap (PlatformLength: number, DifficultyModel: stri
 let activatedboobytraps: Sprite[] = []
 let RealTimeBoobytrap: Sprite = null
 let CurrentPosition: tiles.Location = null
+let PlayaList: Sprite[] = []
 let Camera: Sprite = null
 let yettobeactivatedboobytraps: Sprite[] = []
 let Big_heights: number[] = []
 let mediumheights: number[] = []
 let SmallHeights: number[] = []
 let listtransfer = 0
+let triplejump: number[] = []
+let jump4 = 0
+let jump3 = 0
+let jump2 = 0
+let jump1 = 0
 let GreetSprite: Sprite = null
 scene.setBackgroundImage(img`
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
