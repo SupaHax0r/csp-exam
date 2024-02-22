@@ -4,8 +4,21 @@ namespace SpriteKind {
     export const BoobyTrap = SpriteKind.create()
 }
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
-    for (let index = 0; index <= 4; index++) {
-    	
+    for (let index = 0; index <= PlayaList.length - 1; index++) {
+        if (PlayaList[index] == sprite) {
+            if (index == 0) {
+                jump1 = 0
+            } else if (index == 1) {
+                jump2 = 0
+            } else if (index == 2) {
+                jump3 = 0
+            } else {
+                jump4 = 0
+            }
+        }
+        if (PlayaList[index].isHittingTile(CollisionDirection.Left) || PlayaList[index].isHittingTile(CollisionDirection.Right)) {
+        	
+        }
     }
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava1, function (sprite, location) {
@@ -341,7 +354,6 @@ function RandomlyGeneratedTileMap (PlatformLength: number, DifficultyModel: stri
 let activatedboobytraps: Sprite[] = []
 let RealTimeBoobytrap: Sprite = null
 let CurrentPosition: tiles.Location = null
-let PlayaList: Sprite[] = []
 let Camera: Sprite = null
 let yettobeactivatedboobytraps: Sprite[] = []
 let Big_heights: number[] = []
@@ -353,6 +365,7 @@ let jump4 = 0
 let jump3 = 0
 let jump2 = 0
 let jump1 = 0
+let PlayaList: Sprite[] = []
 let GreetSprite: Sprite = null
 scene.setBackgroundImage(img`
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
