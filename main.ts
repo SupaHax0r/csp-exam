@@ -4,7 +4,10 @@ namespace SpriteKind {
     export const BoobyTrap = SpriteKind.create()
 }
 controller.player4.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
-	
+    if (jump4 < randint(2, 3)) {
+        jump4 += 1
+        mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)).vy = -150
+    }
 })
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     for (let index = 0; index <= PlayaList.length - 1; index++) {
@@ -25,10 +28,16 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     }
 })
 controller.player1.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
-	
+    if (jump1 < randint(2, 3)) {
+        jump1 += 1
+        mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)).vy = -150
+    }
 })
 controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
-	
+    if (jump2 < randint(2, 3)) {
+        jump2 += 1
+        mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)).vy = -150
+    }
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava1, function (sprite, location) {
     sprites.destroy(sprite, effects.disintegrate, 1000)
@@ -306,7 +315,7 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)).ay = 300
     mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three)).ay = 300
     mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)).ay = 300
-    mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.One), 45, 45)
+    mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.One), 45, 0)
     mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Two), 45, 0)
     mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Three), 45, 0)
     mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Four), 45, 0)
@@ -359,7 +368,10 @@ function RandomlyGeneratedTileMap (PlatformLength: number, DifficultyModel: stri
     return
 }
 controller.player3.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
-	
+    if (jump3 < randint(2, 3)) {
+        jump3 += 1
+        mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three)).vy = -150
+    }
 })
 let activatedboobytraps: Sprite[] = []
 let RealTimeBoobytrap: Sprite = null
@@ -371,11 +383,11 @@ let mediumheights: number[] = []
 let SmallHeights: number[] = []
 let listtransfer = 0
 let triplejump: number[] = []
-let jump4 = 0
 let jump3 = 0
 let jump2 = 0
 let jump1 = 0
 let PlayaList: Sprite[] = []
+let jump4 = 0
 let GreetSprite: Sprite = null
 scene.setBackgroundImage(img`
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
