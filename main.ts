@@ -43,9 +43,11 @@ info.onCountdownEnd(function () {
     }
     RealTimeBoobytrap = activatedboobytraps._pickRandom()
     if (RealTimeBoobytrap == sprites.create(assets.image`myImage`, SpriteKind.BoobyTrap)) {
-        RealTimeBoobytrap.setPosition(0, 0)
+        RandomXvalue = PlayaList._pickRandom().x
+        RealTimeBoobytrap.setPosition(Math.constrain(RealTimeBoobytrap.x, RandomXvalue - 20, RandomXvalue + 20), 0)
     } else {
-    	
+        RandomXvalue = PlayaList._pickRandom().x
+        RealTimeBoobytrap.setPosition(Math.constrain(RealTimeBoobytrap.x, RandomXvalue - 20, RandomXvalue + 20), 0)
     }
 })
 controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
@@ -395,6 +397,7 @@ let Big_heights: number[] = []
 let mediumheights: number[] = []
 let SmallHeights: number[] = []
 let triplejump: number[] = []
+let RandomXvalue = 0
 let RealTimeBoobytrap: Sprite = null
 let listtransfer = 0
 let yettobeactivatedboobytraps: Sprite[] = []
