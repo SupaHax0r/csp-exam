@@ -341,7 +341,7 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
         fffffffffffffffffffffffffffffffffbffffffbffffffffffffffffffffffbfcffffcfffffffffffffffcffffffffffffffffffffffffffffffffffffffffffffffffffffdddffffffffffccffffff
         `)
     tiles.loadMap(tiles.createMap(tilemap`level1`))
-    Camera = sprites.create(img`
+    Camera2 = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -359,8 +359,8 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.Camera)
-    tiles.placeOnTile(Camera, tiles.getTileLocation(1, 7))
-    scene.cameraFollowSprite(Camera)
+    tiles.placeOnTile(Camera2, tiles.getTileLocation(1, 7))
+    scene.cameraFollowSprite(Camera2)
     mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.One), sprites.create(img`
         . . . . . . f f f f . . . . . . 
         . . . . f f f 2 2 f f f . . . . 
@@ -476,7 +476,7 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Three), 45, 0)
     mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Four), 45, 0)
     RandomlyGeneratedTileMap(game.askForNumber("num=platform length", 1), game.askForString("Choose random one s m l ", 1), game.askForNumber("num=dist between platforms", 1))
-    Camera.setVelocity(-30, 0)
+    Camera2.setVelocity(-30, 0)
     pause(1000)
     mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)).setFlag(SpriteFlag.AutoDestroy, true)
     mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)).setFlag(SpriteFlag.AutoDestroy, true)
@@ -635,7 +635,7 @@ controller.player3.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
     }
 })
 function RandomlyGeneratedTileMap (PlatformLength: number, DifficultyModel: string, Distancebetweenplatforms: number) {
-    CurrentPosition = tiles.locationOfSprite(Camera)
+    CurrentPosition = tiles.locationOfSprite(Camera2)
     while (tiles.locationXY(CurrentPosition, tiles.XY.row) > 0) {
         if (DifficultyModel == "s") {
             SmallHeights = [0, 0.5]
@@ -687,7 +687,7 @@ let mediumheights: number[] = []
 let SmallHeights: number[] = []
 let CurrentPosition: tiles.Location = null
 let WeaponAttackPlayer3: Sprite = null
-let Camera: Sprite = null
+let Camera2: Sprite = null
 let Weaponattackforplayer1: Sprite = null
 let WeaponAttackPlayaList: Sprite[] = []
 let triplejump: number[] = []
