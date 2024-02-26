@@ -54,7 +54,7 @@ controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.WeaponAttack)
-        WeaponAttackPlayer2.setPosition(PlayaList[1].x + 15, PlayaList[1].y)
+        WeaponAttackPlayer2.setPosition(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)).x + 15, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)).y)
         timer.after(250, function () {
             sprites.destroy(WeaponAttackPlayer2)
         })
@@ -77,7 +77,7 @@ controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.WeaponAttack)
-        WeaponAttackPlayer2.setPosition(PlayaList[1].x - 15, PlayaList[1].y)
+        WeaponAttackPlayer2.setPosition(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)).x - 15, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)).y)
         timer.after(250, function () {
             sprites.destroy(WeaponAttackPlayer2)
         })
@@ -99,15 +99,10 @@ info.onCountdownEnd(function () {
     }
     RealTimeBoobytrap = activatedboobytraps._pickRandom()
     if (RealTimeBoobytrap == sprites.create(assets.image`myImage`, SpriteKind.BoobyTrap)) {
-        RandomPlayer = activatedboobytraps._pickRandom()
-        RandomXvalue = RandomPlayer.x
-        RealTimeBoobytrap.setPosition(Math.constrain(RealTimeBoobytrap.x, RandomXvalue - 20, RandomXvalue + 20), 0)
-        RealTimeBoobytrap.follow(RandomPlayer, 40)
+        RealTimeBoobytrap.setPosition(Math.constrain(RealTimeBoobytrap.x, Camera.x - 20, Camera.x + 20), 0)
+        Camera.setVelocity(0, 50)
     } else if (RealTimeBoobytrap == sprites.create(assets.image`myImage0`, SpriteKind.BoobyTrap)) {
-        RandomXvalue = PlayaList._pickRandom().x
-        RealTimeBoobytrap.setPosition(Math.constrain(RealTimeBoobytrap.x, RandomXvalue + 5, RandomXvalue + 10), Math.constrain(RealTimeBoobytrap.y, RandomXvalue - 5, RandomXvalue + 5))
-    } else {
-    	
+        RealTimeBoobytrap.setPosition(Math.constrain(RealTimeBoobytrap.x, Camera.x + 20, Camera.x - 10), Math.constrain(RealTimeBoobytrap.y, Camera.y - 15, Camera.y + 15))
     }
 })
 controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
@@ -155,7 +150,7 @@ controller.player4.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
             ................................
             ................................
             `, SpriteKind.WeaponAttack)
-        WeaponAttackPlayer4.setPosition(PlayaList[3].x + 15, PlayaList[0].y)
+        WeaponAttackPlayer4.setPosition(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)).x + 15, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)).y)
         timer.after(250, function () {
             sprites.destroy(WeaponAttackPlayer4)
         })
@@ -194,7 +189,7 @@ controller.player4.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
             ................................
             ................................
             `, SpriteKind.WeaponAttack)
-        WeaponAttackPlayer4.setPosition(PlayaList[3].x - 15, PlayaList[0].y)
+        WeaponAttackPlayer4.setPosition(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)).x - 15, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)).y)
         timer.after(250, function () {
             sprites.destroy(WeaponAttackPlayer4)
         })
@@ -498,7 +493,6 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)).setFlag(SpriteFlag.AutoDestroy, true)
     pause(1000)
     info.startCountdown(30)
-    Camera.setVelocity(30, 0)
 })
 controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     if (characterAnimations.matchesRule(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)), characterAnimations.rule(Predicate.FacingRight))) {
@@ -528,7 +522,7 @@ controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
             ........................
             ........................
             `, SpriteKind.WeaponAttack)
-        Weaponattackforplayer1.setPosition(PlayaList[0].x + 15, PlayaList[0].y)
+        Weaponattackforplayer1.setPosition(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)).x + 15, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)).y)
         timer.after(250, function () {
             sprites.destroy(Weaponattackforplayer1)
         })
@@ -559,7 +553,7 @@ controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
             ........................
             ........................
             `, SpriteKind.WeaponAttack)
-        Weaponattackforplayer1.setPosition(PlayaList[0].x - 15, PlayaList[0].y)
+        Weaponattackforplayer1.setPosition(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)).x - 15, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)).y)
         timer.after(250, function () {
             sprites.destroy(Weaponattackforplayer1)
         })
@@ -587,7 +581,7 @@ controller.player3.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             `, SpriteKind.WeaponAttack)
-        WeaponAttackPlayer3.setPosition(PlayaList[2].x + 15, PlayaList[0].y)
+        WeaponAttackPlayer3.setPosition(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)).x + 15, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)).y)
         timer.after(250, function () {
             sprites.destroy(WeaponAttackPlayer3)
         })
@@ -618,7 +612,7 @@ controller.player3.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
             ........................
             ........................
             `, SpriteKind.WeaponAttack)
-        WeaponAttackPlayer3.setPosition(PlayaList[2].x - 15, PlayaList[0].y)
+        WeaponAttackPlayer3.setPosition(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three)).x - 15, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three)).y)
         timer.after(250, function () {
             sprites.destroy(WeaponAttackPlayer3)
         })
@@ -679,13 +673,11 @@ let mediumheights: number[] = []
 let SmallHeights: number[] = []
 let CurrentPosition: tiles.Location = null
 let WeaponAttackPlayer3: Sprite = null
-let Camera: Sprite = null
 let Weaponattackforplayer1: Sprite = null
 let WeaponAttackPlayaList: Sprite[] = []
 let triplejump: number[] = []
 let WeaponAttackPlayer4: Sprite = null
-let RandomXvalue = 0
-let RandomPlayer: Sprite = null
+let Camera: Sprite = null
 let RealTimeBoobytrap: Sprite = null
 let listtransfer = 0
 let yettobeactivatedboobytraps: Sprite[] = []
