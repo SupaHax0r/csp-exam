@@ -86,9 +86,8 @@ controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
     }
 })
 sprites.onOverlap(SpriteKind.WeaponAttack, SpriteKind.Player, function (sprite, otherSprite) {
-    for (let index = 0; index <= PlayaList.length; index++) {
-    	
-    }
+    movepalyerfromattack = otherSprite.x
+    otherSprite.setPosition(otherSprite.x - AttackDisplacementList._pickRandom(), otherSprite.y)
 })
 info.onCountdownEnd(function () {
     activatedboobytraps = []
@@ -194,6 +193,15 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     jump2 = 0
     jump3 = 0
     jump4 = 0
+    AttackDisplacementList = [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    100
+    ]
     triplejump = [
     jump1,
     jump2,
@@ -690,6 +698,8 @@ let RealTimeBoobytrap: Sprite = null
 let listtransfer = 0
 let yettobeactivatedboobytraps: Sprite[] = []
 let activatedboobytraps: Sprite[] = []
+let AttackDisplacementList: number[] = []
+let movepalyerfromattack = 0
 let WeaponAttackPlayer2: Sprite = null
 let jump3 = 0
 let jump2 = 0
