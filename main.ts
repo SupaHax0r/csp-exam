@@ -4,6 +4,9 @@ namespace SpriteKind {
     export const BoobyTrap = SpriteKind.create()
     export const WeaponAttack = SpriteKind.create()
 }
+sprites.onOverlap(SpriteKind.BoobyTrap, SpriteKind.Player, function (sprite, otherSprite) {
+    sprites.destroy(otherSprite, effects.bubbles, 2000)
+})
 controller.player4.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
     if (jump4 < randint(2, 3)) {
         jump4 += 1
@@ -90,20 +93,10 @@ sprites.onOverlap(SpriteKind.WeaponAttack, SpriteKind.Player, function (sprite, 
     otherSprite.setPosition(otherSprite.x - AttackDisplacementList._pickRandom(), otherSprite.y)
 })
 info.onCountdownEnd(function () {
-    activatedboobytraps = []
-    activatedboobytraps.push(yettobeactivatedboobytraps.removeAt(randint(0, 1)))
-    listtransfer += 1
-    info.startCountdown(15)
-    if (listtransfer == 0) {
-        yettobeactivatedboobytraps = []
-    }
-    RealTimeBoobytrap = activatedboobytraps._pickRandom()
-    if (RealTimeBoobytrap == sprites.create(assets.image`myImage`, SpriteKind.BoobyTrap)) {
-        RealTimeBoobytrap.setPosition(Math.constrain(RealTimeBoobytrap.x, Camera.x - 20, Camera.x + 20), 0)
-        Camera.setVelocity(0, 50)
-    } else if (RealTimeBoobytrap == sprites.create(assets.image`myImage0`, SpriteKind.BoobyTrap)) {
-        RealTimeBoobytrap.setPosition(Math.constrain(RealTimeBoobytrap.x, Camera.x + 20, Camera.x - 10), Math.constrain(RealTimeBoobytrap.y, Camera.y - 15, Camera.y + 15))
-    }
+    RealTimeBoobytrap = sprites.create(yettobeactivatedboobytraps._pickRandom(), SpriteKind.BoobyTrap)
+    RealTimeBoobytrap.x = randint(Camera.x - 10, Camera.x + 20)
+    RealTimeBoobytrap.ay = 300
+    info.startCountdown(5)
 })
 controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
     if (jump2 < randint(2, 3)) {
@@ -225,8 +218,7 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     WeaponAttackPlayer2,
     WeaponAttackPlayer4
     ]
-    listtransfer = 2
-    yettobeactivatedboobytraps = [sprites.create(assets.image`myImage`, SpriteKind.BoobyTrap), sprites.create(assets.image`myImage0`, SpriteKind.BoobyTrap)]
+    yettobeactivatedboobytraps = [assets.image`myImage`, assets.image`myImage0`]
     sprites.destroy(GreetSprite, effects.fire, 2000)
     music.play(music.stringPlayable("- - - - - - - - ", 120), music.PlaybackMode.LoopingInBackground)
     scene.setBackgroundImage(img`
@@ -492,7 +484,7 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three)).setFlag(SpriteFlag.AutoDestroy, true)
     mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)).setFlag(SpriteFlag.AutoDestroy, true)
     pause(1000)
-    info.startCountdown(30)
+    info.startCountdown(10)
 })
 controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     if (characterAnimations.matchesRule(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)), characterAnimations.rule(Predicate.FacingRight))) {
@@ -678,10 +670,8 @@ let WeaponAttackPlayaList: Sprite[] = []
 let triplejump: number[] = []
 let WeaponAttackPlayer4: Sprite = null
 let Camera: Sprite = null
+let yettobeactivatedboobytraps: Image[] = []
 let RealTimeBoobytrap: Sprite = null
-let listtransfer = 0
-let yettobeactivatedboobytraps: Sprite[] = []
-let activatedboobytraps: Sprite[] = []
 let AttackDisplacementList: number[] = []
 let movepalyerfromattack = 0
 let WeaponAttackPlayer2: Sprite = null
