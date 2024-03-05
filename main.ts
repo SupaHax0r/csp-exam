@@ -484,6 +484,7 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three)).setFlag(SpriteFlag.AutoDestroy, true)
     mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)).setFlag(SpriteFlag.AutoDestroy, true)
     pause(1000)
+    Camera.setVelocity(30, 0)
     info.startCountdown(10)
 })
 controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
@@ -616,7 +617,7 @@ function RandomlyGeneratedTileMap (PlatformLength: number, DifficultyModel: stri
     CurrentPosition = tiles.locationOfSprite(Camera)
     while (tiles.locationXY(CurrentPosition, tiles.XY.row) > 0) {
         if (DifficultyModel == "s") {
-            SmallHeights = [0, 0.5]
+            SmallHeights = [1, 1.5]
             for (let index = 0; index < SmallHeights._pickRandom(); index++) {
                 if (Math.percentChance(50)) {
                     CurrentPosition = tiles.locationInDirection(CurrentPosition, CollisionDirection.Top)
@@ -625,7 +626,7 @@ function RandomlyGeneratedTileMap (PlatformLength: number, DifficultyModel: stri
                 }
             }
         } else if (DifficultyModel == "m") {
-            mediumheights = [1, 1.5]
+            mediumheights = [2, 2.5]
             for (let index = 0; index < mediumheights._pickRandom(); index++) {
                 if (Math.percentChance(50)) {
                     CurrentPosition = tiles.locationInDirection(CurrentPosition, CollisionDirection.Top)
@@ -634,7 +635,7 @@ function RandomlyGeneratedTileMap (PlatformLength: number, DifficultyModel: stri
                 }
             }
         } else {
-            Big_heights = [2, 3]
+            Big_heights = [3, 3.5]
             for (let index = 0; index < Big_heights._pickRandom(); index++) {
                 if (Math.percentChance(50)) {
                     CurrentPosition = tiles.locationInDirection(CurrentPosition, CollisionDirection.Top)
