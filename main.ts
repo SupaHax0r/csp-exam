@@ -13,6 +13,7 @@ controller.player4.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
         mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four)).vy = -150
     }
 })
+// someone helped make this for me
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     for (let index = 0; index <= PlayaList.length - 1; index++) {
         if (PlayaList[index] == sprite) {
@@ -31,6 +32,7 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
         }
     }
 })
+// someone helped make this as for players 2 3 and 4
 controller.player1.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
     if (jump1 < randint(2, 3)) {
         jump1 += 1
@@ -92,6 +94,7 @@ sprites.onOverlap(SpriteKind.WeaponAttack, SpriteKind.Player, function (sprite, 
     movepalyerfromattack = otherSprite.x
     otherSprite.setPosition(otherSprite.x - AttackDisplacementList._pickRandom(), otherSprite.y)
 })
+// someone me helped on this
 info.onCountdownEnd(function () {
     RealTimeBoobytrap = sprites.create(yettobeactivatedboobytraps._pickRandom(), SpriteKind.BoobyTrap)
     RealTimeBoobytrap.x = randint(Camera.x - 10, Camera.x + 20)
@@ -487,6 +490,15 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     Camera.setVelocity(30, 0)
     info.startCountdown(10)
 })
+/**
+ * arcade-background-scroll, github:microsoft/arcade-backgroundscroll#6cfbf925b9a4d5ddf3e1078e6cf6ca6a1aebb301 this makes background scroll
+ * 
+ * tilemaps, github:microsoft/pxt-tilemaps#v1.12.0 this helped me with the tilemaps
+ * 
+ * Timers, github:microsoft/arcade-timers#v1.1.0 this helped with the time it took to activate ceratain actiohns
+ * 
+ * arcade-character-animations, github:microsoft/arcade-character-animations#v0.0.2 this helped make the character animation look better
+ */
 controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     if (characterAnimations.matchesRule(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)), characterAnimations.rule(Predicate.FacingRight))) {
         Weaponattackforplayer1 = sprites.create(img`
