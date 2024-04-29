@@ -4,6 +4,15 @@ namespace SpriteKind {
     export const BoobyTrap = SpriteKind.create()
     export const WeaponAttack = SpriteKind.create()
 }
+/**
+ * arcade-background-scroll, github:microsoft/arcade-backgroundscroll#6cfbf925b9a4d5ddf3e1078e6cf6ca6a1aebb301 this makes background scroll
+ * 
+ * tilemaps, github:microsoft/pxt-tilemaps#v1.12.0 this helped me with the tilemaps
+ * 
+ * Timers, github:microsoft/arcade-timers#v1.1.0 this helped with the time it took to activate ceratain actiohns
+ * 
+ * arcade-character-animations, github:microsoft/arcade-character-animations#v0.0.2 this helped make the character animation look better
+ */
 sprites.onOverlap(SpriteKind.BoobyTrap, SpriteKind.Player, function (sprite, otherSprite) {
     sprites.destroy(otherSprite, effects.bubbles, 2000)
 })
